@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/slack-go/slack"
@@ -95,6 +96,23 @@ func EventsEndpoint(w http.ResponseWriter, r *http.Request) {
 			)
 			if err != nil {
 				fmt.Printf("Error sending mention response: %v\n", err)
+			}
+		case *slackevents.MessageEvent:
+			if ev.SubType == "bot_message" {
+				return
+			}
+			if ev.Channel != os.Getenv("SLACK_CHANNEL_ID") {
+				return
+			}
+			if strings.Contains(strings.ToLower(ev.Message.Text), "go ship") {
+				// react
+				err = api.AddReaction("party-gopher", slack.ItemRef{
+					Channel:   ev.Channel,
+					Timestamp: ev.TimeStamp,
+				})
+				if err != nil {
+					fmt.Printf("Error adding reaction: %v\n", err)
+				}
 			}
 		default:
 			fmt.Printf("[INFO] Unhandled inner event type: %T\n", ev)
