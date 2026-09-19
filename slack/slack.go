@@ -62,31 +62,31 @@ func EventsEndpoint(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("[INFO] Received inner event:", innerEvent.Type)
 		// THROW EVENTS HERE U CANT MISS THIS COMMENT
 		switch ev := innerEvent.Data.(type) {
-		case *slackevents.MemberJoinedChannelEvent:
-			if ev.Channel != os.Getenv("SLACK_CHANNEL_ID") {
-				return
-			}
+		// case *slackevents.MemberJoinedChannelEvent:
+		// 	if ev.Channel != os.Getenv("SLACK_CHANNEL_ID") {
+		// 		return
+		// 	}
 
-			// Fetch user info to check if they are a bot
-			user, err := api.GetUserInfo(ev.User)
-			if err != nil {
-				fmt.Printf("Error fetching user info: %v\n", err)
-				return
-			}
+		// 	// Fetch user info to check if they are a bot
+		// 	user, err := api.GetUserInfo(ev.User)
+		// 	if err != nil {
+		// 		fmt.Printf("Error fetching user info: %v\n", err)
+		// 		return
+		// 	}
 
-			// Don't send welcome message to bots
-			if user.IsBot {
-				return
-			}
+		// 	// Don't send welcome message to bots
+		// 	if user.IsBot {
+		// 		return
+		// 	}
 
-			// send welcome message
-			_, _, err = api.PostMessage(
-				ev.Channel,
-				slack.MsgOptionText(fmt.Sprintf("Welcome <@%s>! :party-gopher:", ev.User), false),
-			)
-			if err != nil {
-				fmt.Printf("Error sending welcome message: %v\n", err)
-			}
+		// 	// send welcome message
+		// 	_, _, err = api.PostMessage(
+		// 		ev.Channel,
+		// 		slack.MsgOptionText(fmt.Sprintf("Welcome <@%s>! :party-gopher:", ev.User), false),
+		// 	)
+		// 	if err != nil {
+		// 		fmt.Printf("Error sending welcome message: %v\n", err)
+		// 	}
 		case *slackevents.AppMentionEvent:
 			opts := []slack.MsgOption{
 				slack.MsgOptionText(":super-party-gopher:", false),
@@ -134,7 +134,9 @@ func Init() {
 }
 
 func AddPersonToChannel(userId string) error {
-	if !isInited { return nil }
+	if !isInited {
+		return nil
+	}
 	channelId := os.Getenv("SLACK_CHANNEL_ID")
 	if channelId == "" {
 		return fmt.Errorf("SLACK_CHANNEL_ID environment variable not set")
