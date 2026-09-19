@@ -56,7 +56,7 @@ func main() {
 
 You can now run this server with `go run main.go` and visit <http://localhost:8080> to see the "Hello, World!" message.
 
-![Hello World](/public/guides/assets/gin-hello.png)
+![Hello World](/public/guides/assets/gin-hello.webp)
 
 You might get warnings about debug mode and trusted proxies, but you can ignore those while developing locally. You can read more about those in the documentation:
 
@@ -121,7 +121,7 @@ func main() {
 
 Now, when you run the server and visit <http://localhost:8080>, you should see "Go Public Board" displayed on the page, rendered from the template.
 
-<img src="/public/guides/assets/gin-title.png" alt="Gin Template" width="400">
+<img src="/public/guides/assets/gin-title.webp" alt="Gin Template" width="400">
 
 ---
 
@@ -163,9 +163,9 @@ Let's add the following to our index.html:
 
 ```html
 <form action="/post" method="POST">
-    <input type="text" name="author" placeholder="Username..." required>
-    <input type="text" name="content" placeholder="Write something..." required>
-    <button type="submit">Post</button>
+  <input type="text" name="author" placeholder="Username..." required />
+  <input type="text" name="content" placeholder="Write something..." required />
+  <button type="submit">Post</button>
 </form>
 ```
 
@@ -304,7 +304,7 @@ r.GET("/", func(ctx *gin.Context) {
         return
     }
     // Don't forget to defer closing the rows to prevent memory leaks.
-    // Defer ensures that the function (here, rows.Close()) will be called after 
+    // Defer ensures that the function (here, rows.Close()) will be called after
     // the surrounding function (the handler) returns, even if an error occurs.
     defer rows.Close()
 
@@ -339,9 +339,9 @@ And then, in our `index.html`, we can display the posts like this:
 {{ range .Posts }}
 <!-- .Author, .Content, and .CreatedAt are the fields of the Post struct -->
 <div>
-    <h3>{{ .Author }}</h3>
-    <p>{{ .Content }}</p>
-    <small>{{ .CreatedAt }}</small>
+  <h3>{{ .Author }}</h3>
+  <p>{{ .Content }}</p>
+  <small>{{ .CreatedAt }}</small>
 </div>
 {{ end }}
 ```
@@ -350,7 +350,7 @@ Now, when you submit a post, it will be saved to the database and displayed on t
 
 Cool thing about templates, is that they prevent XSS by default, so if you try to submit a post with HTML or JavaScript, it will be escaped and displayed as text instead of being executed! (As long as you don't use unsafe template options.)
 
-<img src="/public/guides/assets/gin-form.png" alt="Gin Board" width="400">
+<img src="/public/guides/assets/gin-form.webp" alt="Gin Board" width="400">
 
 ---
 

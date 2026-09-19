@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
 
 :root {
   --main-color: #65a9d7; /* Go logo blue */
@@ -47,7 +47,7 @@ body {
 }
 
 p {
-  margin: 0
+  margin: 0;
 }
 
 header {
@@ -181,11 +181,9 @@ a:hover {
 }
 
 .lucide-react-icon {
-  width: 5cqw;
-  height: 5cqw;
+  max-width: 5cqw;
+  max-height: 5cqw;
   color: white;
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(100deg)
-    brightness(102%) contrast(102%);
 }
 
 .dotted-arrow {
@@ -257,6 +255,37 @@ button {
     background: gray !important;
     cursor: not-allowed;
   }
+}
+
+#project-submit {
+  background: url("/public/submitbutton.webp") center / contain no-repeat;
+  border: none;
+  padding: 0;
+  margin: 10px 0;
+  width: 220px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: none;
+  display: inline-block;
+}
+
+.slack-button-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+#join-button {
+  background: url("/public/slackbutton.webp") center / contain no-repeat;
+  border: none;
+  padding: 0;
+  margin: 10px 0;
+  width: 220px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: none;
+  display: inline-block;
 }
 
 .pulseeffect {

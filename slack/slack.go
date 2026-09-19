@@ -13,8 +13,14 @@ import (
 )
 
 var api *slack.Client
+var isInited bool = false
 
 func EventsEndpoint(w http.ResponseWriter, r *http.Request) {
+	if !isInited {
+		w.WriteHeader(http.StatusServiceUnavailable)
+		w.Write([]byte("Slack bot not initialized"))
+		return
+	}
 	signingSecret := os.Getenv("SLACK_SIGNING_SECRET")
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
@@ -104,6 +110,11 @@ func EventsEndpoint(w http.ResponseWriter, r *http.Request) {
 
 func Init() {
 	token := os.Getenv("SLACK_BOT_TOKEN")
+	if token == "" {
+		fmt.Println("No slack bot token, bot functionality will be disabled.")
+		isInited = true
+		return
+	}
 	api = slack.New(token)
 
 	// test
@@ -111,6 +122,7 @@ func Init() {
 	for i := range 3 {
 		_, err = api.AuthTest()
 		if err == nil {
+			isInited = true
 			return
 		}
 		fmt.Printf("Failed to authenticate with Slack API (try %d): %v\n", i+1, err)
@@ -122,6 +134,7 @@ func Init() {
 }
 
 func AddPersonToChannel(userId string) error {
+	if !isInited { return nil }
 	channelId := os.Getenv("SLACK_CHANNEL_ID")
 	if channelId == "" {
 		return fmt.Errorf("SLACK_CHANNEL_ID environment variable not set")

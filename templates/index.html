@@ -11,14 +11,14 @@
       property="og:description"
       content="Ship a Go projects -> get cool prizes!"
     />
-    <meta property="og:image" content="/public/hero.png" />
+    <meta property="og:image" content="/public/hero.webp" />
     <meta property="og:url" content="https://goship.hackclub.com/" />
   </head>
   <body>
     <header>
-      <img src="/public/hero.png" alt="Go Ship!" class="hero-image" />
+      <img src="/public/hero.webp" alt="Go Ship!" class="hero-image" />
       <img
-        src="/public/godown.png"
+        src="/public/godown.webp"
         alt="Scroll down arrow"
         id="scrolly-down-arrow-thing"
       />
@@ -51,15 +51,16 @@
       <div class="hero-stuff">
         <div class="hero-stuff-main">
           <div class="hero-stuff-main-content">
-            <img src="public/GoShip.png" alt="Go Ship!" class="logo" />
+            <img src="public/GoShip.webp" alt="Go Ship!" class="logo" />
             <div class="hero-taglines-parent">
-              <img src="public/frame.png" alt="Frame" class="tagline-frame" />
+              <img src="public/frame.webp" alt="Frame" class="tagline-frame" />
+
               <div class="hero-taglines-parent-parent">
                 <div class="hero-taglines">
                   <span class="hero-tagline">
                     <img
-                      src="public/sailboat.svg"
-                      alt="Sailboat"
+                      src="public/script.webp"
+                      alt="Script Icon"
                       class="lucide-react-icon"
                     />
                     <p class="hero-tagline-text sick-ass-drop-shadow-solid">
@@ -67,13 +68,13 @@
                     </p>
                   </span>
                   <img
-                    src="public/coolerdotted.png"
+                    src="public/coolerdotted.webp"
                     alt="arrow down"
                     class="dotted-arrow"
                   />
                   <span class="hero-tagline">
                     <img
-                      src="public/gem.svg"
+                      src="public/gopherdraw.webp"
                       alt="Gem"
                       class="lucide-react-icon"
                     />
@@ -103,20 +104,34 @@
                 width: 100%;
               "
             >
-              {{if .IsAuthed}}
-              <p class="tyforrsvp">Thanks for RSVPing!</p>
-              {{else}}
-              <a href="{{ .HCAAuthURL }}">
-                <button class="regbutton rsvp-button">RSVP Now!</button>
-              </a>
-              {{end}}
+              <button
+                id="project-submit"
+                type="button"
+                class="submit-button"
+                data-fillout-id="n2Ggte2vuMus"
+                data-fillout-embed-type="popup"
+                data-fillout-dynamic-resize
+                data-fillout-inherit-parameters
+                data-fillout-domain="forms.hackclub.com"
+                data-fillout-popup-size="large"
+                aria-label="Submit your project"
+                aria-haspopup="dialog"
+                title="Submit your project"
+              ></button>
+              <script src="https://server.fillout.com/embed/v1/"></script>
               <a
                 href="https://hackclub.enterprise.slack.com/archives/C0AMCKRCAP9"
                 id="join-anchor"
+                aria-label="Join the Slack Channel"
+                class="slack-button-link"
               >
-                <button class="regbutton blugreenreyellow" id="join-button">
-                  Join the Slack Channel
-                </button>
+                <button
+                  class="slack-button"
+                  id="join-button"
+                  type="button"
+                  aria-label="Join the Slack Channel"
+                  title="Join the Slack Channel"
+                ></button>
               </a>
               {{if .IsAuthed}}
               <script>
@@ -156,7 +171,7 @@
       </div>
     </header>
     <!-- end of header-->
-    <img src="public/waves.png" alt="wave" class="wave-seperator" />
+    <img src="public/waves.webp" alt="wave" class="wave-seperator" />
 
     <!-- FAQ and Requirements section -->
     <!-- shoutout to https://railway.hackclub.com/ for the design inspiration -->
@@ -175,7 +190,10 @@
             Write a proper README.md with instructions on how to build and run
             your project.<br />
           </li>
-          <li>You may not use AI generation to write your code, with the exception of tab completion.</li>
+          <li>
+            You may not use AI generation to write your code, with the exception
+            of tab completion.
+          </li>
           <li>
             Ship your project!
             <ul>
@@ -228,13 +246,18 @@
             </ul>
           </details>
           <details>
+            <summary>When is this running?</summary>
+            <p>From September 20th to October 11th!</p>
+          </details>
+          <details>
             <summary>Can I participate?</summary>
             <p>If you're 13-18 years old, yes!</p>
           </details>
           <details>
             <summary>What do I need to do?</summary>
             <p>
-              1. Ship a project written in Go with at least 5 hours tracked on Hackatime<br />
+              1. Ship a project written in Go with at least 5 hours tracked on
+              Hackatime<br />
               2. We'll ship you a Gopher Plushie!
             </p>
           </details>
@@ -244,8 +267,8 @@
             <p>
               If your project is a website, you can host it on any platform that
               supports Go (try
-              <a href="https://hackclub.app" target="_blank">Hack Club Nest</a>!) as long as it's live and accessible to the
-              public.<br />
+              <a href="https://hackclub.app" target="_blank">Hack Club Nest</a
+              >!) as long as it's live and accessible to the public.<br />
               If your project is not a website, you can upload the binary to
               GitHub Releases (or another platform) and optionally list your
               package on pkg.go.dev.
@@ -256,7 +279,7 @@
             <p>
               <a href="https://hackatime.hackclub.com/" target="_blank"
                 >Hackatime</a
-              >!
+              >! Time from September 20th to October 11th will be counted.
             </p>
           </details>
           <details>
@@ -290,7 +313,7 @@
       "
     >
       <hr class="guides-hr" />
-      <img src="/public/plushies.png" />
+      <img src="/public/plushies.webp" />
     </div>
 
     <!--start of guides links-->
@@ -318,7 +341,7 @@
           <p class="guide-card-description">Make the Golang Go</p>
         </div>
         <img
-          src="/public/godown.png"
+          src="/public/godown.webp"
           alt="arrow right"
           class="guides-next-arrow"
         />
@@ -328,7 +351,7 @@
           style="cursor: pointer"
         >
           <img
-            src="/public/hackatime.png"
+            src="/public/hackatime.webp"
             alt="Hack a time waow"
             class="guide-card-image"
           />
@@ -336,7 +359,7 @@
           <p class="guide-card-description">This time will be hacked</p>
         </div>
         <img
-          src="/public/godown.png"
+          src="/public/godown.webp"
           alt="arrow right"
           class="guides-next-arrow"
         />
@@ -346,7 +369,7 @@
           style="cursor: pointer"
         >
           <img
-            src="/public/carousel/gopher.png"
+            src="/public/carousel/gopher.webp"
             alt="Go Gopher"
             class="guide-card-image"
           />
@@ -369,7 +392,7 @@
           style="cursor: pointer"
         >
           <img
-            src="/public/color.png"
+            src="/public/color.webp"
             alt="Gin Logo"
             class="guide-card-image"
           />
@@ -883,16 +906,16 @@
     </section>
     <!-- end of gambling -->
     <!-- start of footer -->
-    <img src="public/flipwaves.png" alt="wave" class="wave-seperator" />
-    <!-- boo more .png's to download but css transform rotate(180deg) added a weird white line so -->
+    <img src="public/flipwaves.webp" alt="wave" class="wave-seperator" />
+    <!-- boo more .webp's to download but css transform rotate(180deg) added a weird white line so -->
     <footer>
       <p>
         <a href="https://hackclub.com" target="_blank"> Hack Club </a>
       </p>
       <div class="verticalseperatorthingy"></div>
       <p>
-        <a href="https://github.com/bananajeanss/go-ship" target="_blank">
-          Github Repo
+        <a href="https://github.com/hackclub/go-ship" target="_blank">
+          Source Code
         </a>
       </p>
       <div class="verticalseperatorthingy"></div>
@@ -900,14 +923,12 @@
         Commit:
         <a
           id="ghCommitUrl"
-          href="https://github.com/bananajeanss/go-ship/commit/{{ .CommitHash }}"
+          href="https://github.com/hackclub/go-ship/commit/{{ .CommitHash }}"
           target="_blank"
         >
           {{ .CommitHash }}
         </a>
       </p>
-      <div class="verticalseperatorthingy"></div>
-      <p>{{ .RSVPCount }} RSVPs</p>
       <div class="verticalseperatorthingy"></div>
       <p
         style="
@@ -919,7 +940,7 @@
       >
         Built with <a href="https://go.dev/" target="_blank">Go</a>
         <img
-          src="/public/gopherdraw.png"
+          src="/public/gopherdraw.webp"
           alt="an masterpiece drawing of the go gopher at like what 42x42 pixels"
           class="gopherdraw"
         />

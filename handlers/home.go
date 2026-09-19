@@ -8,7 +8,6 @@ import "bananajeanss/go-ship/db"
 type PageData struct {
 	HCAAuthURL string
 	IsAuthed   bool
-	RSVPCount  int
 	CommitHash string
 }
 
@@ -30,15 +29,9 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		loggedIn = db.IsLoggedIn(cookie.Value)
 	}
 
-	rsvpCount, err := db.RsvpCount()
-	if err != nil {
-		rsvpCount = 9999 // 9999 cause it's a unrealistic expectation and i can use that clientside to show sumn went wrong
-	}
-
 	data := PageData{
 		HCAAuthURL: "https://auth.hackclub.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectURI + "&response_type=code&scope=openid+profile+email+name+profile+slack_id+verification_status",
 		IsAuthed:   loggedIn,
-		RSVPCount: rsvpCount,
 		CommitHash: func() string {
 			if len(commitHash) > 7 {
 				return commitHash[:7] // shorten to short hash if > 7 length
