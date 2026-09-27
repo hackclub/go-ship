@@ -95,10 +95,7 @@ func main() {
 	// serve public static files
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("./public"))))
 
-	// redirect site.webmanifest and favicon.ico to the public folder
-	http.HandleFunc("/site.webmanifest", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "./public/site.webmanifest")
-	})
+	// favicon
 	http.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./public/favicon.ico")
 	})
