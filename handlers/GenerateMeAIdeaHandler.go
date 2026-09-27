@@ -103,7 +103,7 @@ func GenerateMeAIdeaHandler(w http.ResponseWriter, r *http.Request) {
 
 	AI_BASE_URL := "https://ai.hackclub.com/proxy/v1/chat/completions"
 	AI_API_TOKEN := os.Getenv("AI_API_TOKEN")
-	AI_MODEL := "google/gemini-3-flash-preview"
+	AI_MODEL := "openai/gpt-6-sol"
 
 	if AI_BASE_URL == "" || AI_API_TOKEN == "" {
 		http.Error(w, "AI API not configured", 500)
